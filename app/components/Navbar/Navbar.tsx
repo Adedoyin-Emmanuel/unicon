@@ -28,7 +28,7 @@ const Navbar = () => {
   };
   return (
     <section className="container mx-auto">
-      <div className="bg-white w-full mx-auto p-4 flex items-center md:my-2 gap-x-12 justify-between">
+      <div className="w-full mx-auto p-4 flex items-center md:my-2 gap-x-12 justify-between">
         <section className="brand-name flex items-center gap-x-10">
           <Link
             href={"/"}
@@ -73,8 +73,8 @@ const Navbar = () => {
         </section>
 
         <section className="md:flex hidden items-center w-auto gap-x-3">
-          <Button className="w-32">Login</Button>
-          <Button border className="w-32">
+          <Button className="w-28">Login</Button>
+          <Button border className="w-28">
             Signup
           </Button>
         </section>

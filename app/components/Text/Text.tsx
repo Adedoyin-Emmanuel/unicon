@@ -1,19 +1,23 @@
+"use client";
 
-"use client"
 import React from "react";
 
-interface IndexProps {
-    
+interface TextProps {
+  className?: string;
+  children: React.ReactNode;
+  noCapitalize?: boolean;
 }
 
-const Index = ()=> {
+const Text = ({ className, children, noCapitalize }: TextProps) => {
+  return (
+    <p
+      className={`text-md ${
+        noCapitalize ? "lowercase" : "capitalize"
+      } ${className}`}
+    >
+      {children}
+    </p>
+  );
+};
 
-    return (
-        <div>
-            <h1>Index works!</h1>
-        </div>
-    );  
-}
-
-export default Index;
-    
+export default Text;
