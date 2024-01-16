@@ -73,10 +73,14 @@ const Navbar = () => {
         </section>
 
         <section className="md:flex hidden items-center w-auto gap-x-3">
-          <Button className="w-28">Login</Button>
-          <Button border className="w-28">
-            Signup
-          </Button>
+          <Link className="block" href={"/auth/login"}>
+            <Button className="w-28">Login</Button>
+          </Link>
+          <Link className="block" href={"/auth/signup"}>
+            <Button border className="w-28">
+              Signup
+            </Button>
+          </Link>
         </section>
 
         <div
@@ -104,6 +108,28 @@ const Navbar = () => {
         ref={mobileLinksRef}
       >
         <ul className="flex flex-col items-center gap-y-4">
+          <li className="mx-2">
+            <Link
+              href="/auth/login"
+              className={`capitalize ${
+                currentPath.includes("/auth/login") && currentPathClass
+              } ${hoverClass}`}
+            >
+              Login
+            </Link>
+          </li>
+
+          <li className="mx-2">
+            <Link
+              href="/auth/signup"
+              className={`capitalize ${
+                currentPath.includes("/auth/signup") && currentPathClass
+              } ${hoverClass}`}
+            >
+              Signup
+            </Link>
+          </li>
+
           <li className="mx-2">
             <Link
               href="/"

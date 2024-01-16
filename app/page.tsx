@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Text from "./components/Text/Text";
 import Button from "./components/Button/Button";
 import ScrollCarousel from "scroll-carousel-react";
+import Link from "next/link";
 
 export default function Home() {
   const Texts = [
@@ -26,7 +27,7 @@ export default function Home() {
 
       <section className="container mx-auto">
         <section className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col justify-center md:p-8 p-2">
+          <div className="flex flex-col justify-center p-2">
             <section className="w-full flex items-end justify-end transform md:-translate-x-28">
               <svg
                 width="28"
@@ -63,7 +64,9 @@ export default function Home() {
             </Text>
             <br />
             <br />
-            <Button className="w-40">Get started</Button>
+            <Link href={"/auth/login"}>
+              <Button className="w-40">Get started</Button>
+            </Link>
           </div>
           <div className="block p-2 my-2">
             <img
