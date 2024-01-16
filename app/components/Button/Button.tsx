@@ -22,7 +22,7 @@ const Button = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`capitalize  w-full rounded p-2 cursor-pointer  transition-all duration-150 ease-in transform ${
+      className={`capitalize rounded p-2 cursor-pointer  transition-all duration-150 ease-in transform ${
         animate && "hover:scale-x-105"
       } ${
         border

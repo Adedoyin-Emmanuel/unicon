@@ -27,7 +27,7 @@ const ForgotPassword = () => {
         </section>
 
         <section className="my-4 mb-5 w-full">
-          <Button>Submit</Button>
+          <Button className="w-full">Submit</Button>
         </section>
 
         <section>

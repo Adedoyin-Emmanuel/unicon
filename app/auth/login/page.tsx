@@ -42,7 +42,7 @@ const Login = () => {
         </section>
 
         <section className="my-4 mb-5 w-full">
-          <Button>Login</Button>
+          <Button className="w-full">Login</Button>
         </section>
 
         <section>

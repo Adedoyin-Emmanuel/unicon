@@ -49,7 +49,7 @@ const Signup = () => {
         </section>
 
         <section className="my-4 mb-5 w-full">
-          <Button>Sign up</Button>
+          <Button className="w-full">Sign up</Button>
         </section>
 
         <section>

@@ -31,7 +31,7 @@ const ResetPassword = () => {
         </section>
 
         <section className="my-4 mb-5 w-full">
-          <Button>Reset password</Button>
+          <Button className="w-full">Reset password</Button>
         </section>
       </form>
     </section>
