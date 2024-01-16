@@ -38,3 +38,33 @@ html {
 p {
   font-family: AlmarenaDisplayLight !important;
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.fade-in {
+  display: flex;
+  transition: 0.7s;
+  animation: fadeIn 0.7s linear;
+}
+
+.fade-out {
+  transition: 0.7s;
+  animation: fadeOut 0.7s linear;
+}
