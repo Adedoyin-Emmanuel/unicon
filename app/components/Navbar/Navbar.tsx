@@ -32,7 +32,7 @@ const Navbar = () => {
         <section className="brand-name flex items-center gap-x-10">
           <Link
             href={"/"}
-            className="block text-primary font-bold text-3xl capitalize"
+            className="block text-primary font-bold md:text-3xl text-2xl capitalize"
           >
             unicon
           </Link>
