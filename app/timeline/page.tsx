@@ -1,15 +1,17 @@
 "use client";
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
-import AppHeader from "./../components/AppHeader/AppHeader";
+import Layout from "./../components/Layout/Layout";
 
 const Timeline = () => {
   const pathname = usePathname();
 
   return (
-    <div>
-      <AppHeader />
-    </div>
+    <Layout>
+      <h1 className="capitalize text-3xl text-primary font-bold">
+        hello squad
+      </h1>
+    </Layout>
   );
 };
 

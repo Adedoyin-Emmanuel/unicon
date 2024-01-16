@@ -7,14 +7,18 @@ interface AppHeaderProps {
 
 const AppHeader = ({ className, ...others }: AppHeaderProps) => {
   return (
-    <div className={`p-3 flex items-center gap-x-2 ${className}`} {...others}>
+    <div className={`my-1 flex items-center gap-x-2 ${className}`} {...others}>
       <div className="avatar">
         <div className="w-10 rounded-full">
-          <img src="https://api.dicebear.com/7.x/micah/svg?seed=adedoyin%20emma" />
+          <img src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft" />
         </div>
       </div>
-      <div className="dropdown dropdown-bottom ">
-        <div tabIndex={0} role="button" className="btn m-1 flex items-center">
+      <div className="dropdown dropdown-bottom">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-outline hover:bg-transparent hover:text-black border-slate-200 hover:border-slate-300 m-1 flex items-center"
+        >
           Adedoyi Emmanuel
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +37,7 @@ const AppHeader = ({ className, ...others }: AppHeaderProps) => {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-zinc-50 rounded-box w-52"
+          className="dropdown-content z-[1] menu p-2 bg-slate-50 rounded-box w-52"
         >
           <li>
             <a>Browse events</a>
