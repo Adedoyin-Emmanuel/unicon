@@ -12,7 +12,7 @@ const Signup = () => {
   return (
     <section className="w-screen h-screen flex items-center justify-center">
       <form className="w-11/12 md:w-1/2 xl:w-1/4">
-        <section className="header-section my-8">
+        <section className="my-8">
           <h3 className="text-3xl capitalize font-bold text-secondary">
             Create An Account
           </h3>
