@@ -46,7 +46,7 @@ const Login = () => {
         </section>
 
         <section>
-          <Text className="inline">
+          <Text className="inline text-sm">
             no account?
             <Link
               className="capitalize text-secondary px-1"

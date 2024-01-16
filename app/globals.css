@@ -35,7 +35,9 @@ html {
   box-sizing: border-box;
 }
 
-p {
+p,
+input,
+label {
   font-family: AlmarenaDisplayLight !important;
 }
 

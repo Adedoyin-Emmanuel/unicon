@@ -53,7 +53,7 @@ const Signup = () => {
         </section>
 
         <section>
-          <Text className="inline">
+          <Text className="inline text-sm">
             have an account?
             <Link
               className="capitalize text-secondary px-1"
