@@ -29,14 +29,14 @@ const Navbar = () => {
   return (
     <section className="container mx-auto">
       <div className="bg-white w-full mx-auto p-4 flex items-center md:my-2 gap-x-12 justify-between">
-        <section className="brand-name flex items-center gap-x-4">
+        <section className="brand-name flex items-center gap-x-10">
           <Link
             href={"/"}
-            className="text-primary font-bold text-3xl capitalize"
+            className="block text-primary font-bold text-3xl capitalize"
           >
             unicon
           </Link>
-          <section className="md:flex hidden">
+          <section className="md:flex hidden gap-x-5">
             <ul className="flex flex-row">
               <li className="mx-2">
                 <Link
@@ -73,8 +73,8 @@ const Navbar = () => {
         </section>
 
         <section className="md:flex hidden items-center w-auto gap-x-3">
-          <Button className="w-24">Login</Button>
-          <Button border className="w-24">
+          <Button className="w-32">Login</Button>
+          <Button border className="w-32">
             Signup
           </Button>
         </section>
