@@ -1,19 +1,16 @@
-
-"use client"
+"use client";
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
+import AppHeader from "./../components/AppHeader/AppHeader";
 
+const Timeline = () => {
+  const pathname = usePathname();
 
-const Index = () => {
-    const pathname = usePathname();
+  return (
+    <div>
+      <AppHeader />
+    </div>
+  );
+};
 
-    return (
-        <div>
-            <h1>Index works!</h1>
-            <p>Current pathname: {pathname}</p>
-        </div>
-    );  
-}
-
-export default Index;
-    
+export default Timeline;
