@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Almarena;
+  src: url("/fonts/Almarena-Almarena.otf") format("opentype");
+}
+
+@font-face {
+  font-family: AlmarenaDisplayBold;
+  src: url("/fonts/Almarena-Almarena-Display-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: AlmarenaDisplayLight;
+  src: url("/fonts/Almarena-Almarena-Display-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: AlmarenaDisplayRegular;
+  src: url("/fonts/Almarena-Almarena-Display-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: AlmarenaLight;
+  src: url("/fonts/Almarena-Almarena-Light.otf") format("opentype");
+}
+
+body,
+html {
+  font-family: Almarena;
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+p,
+input,
+label {
+  font-family: AlmarenaDisplayLight !important;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.fade-in {
+  display: flex;
+  transition: 0.7s;
+  animation: fadeIn 0.7s linear;
+}
+
+.fade-out {
+  transition: 0.7s;
+  animation: fadeOut 0.7s linear;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
