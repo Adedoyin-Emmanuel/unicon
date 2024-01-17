@@ -9,12 +9,14 @@ interface LayoutProps {
 
 const Layout = ({ className, children }: LayoutProps) => {
   return (
-    <div className="w-full h-full my-3 mx-auto overflow-x-hidden">
-      <section className="w-full flex items-center justify-between">
+    <div className="w-full h-full my-1 mx-auto">
+      <section className="w-full flex items-center justify-between md:p-3 p-0">
         <section className="w-11/12 gap-x-2 xl:w-2/6 flex items-center xl:gap-x-10 p-2">
-          {/* <h1 className="lg:block hidden text-primary font-bold text-2xl  capitalize">
-            Unicon
-          </h1> */}
+          <img
+            src="/assets/logo.svg"
+            alt="Unicon logo"
+            className="w-11 h-11 transform -translate-y-1"
+          />
           <input
             type="text"
             id="search"
@@ -26,7 +28,9 @@ const Layout = ({ className, children }: LayoutProps) => {
         <AppHeader />
       </section>
 
-      <section className="w-full p-2">{children}</section>
+      <section className="w-full md:p-5 p-2 overflow-x-hidden">
+        {children}
+      </section>
     </div>
   );
 };

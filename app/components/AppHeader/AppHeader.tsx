@@ -71,7 +71,7 @@ const AppHeader = ({ className, ...others }: AppHeaderProps) => {
       className={`flex items-center gap-x-2 relative ${className}`}
       {...others}
     >
-      <div className="avatar p-2 cursor-pointer " ref={profileRef}>
+      <div className="avatar p-2 cursor-pointer" ref={profileRef}>
         <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
           <img
             src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
