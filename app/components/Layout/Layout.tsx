@@ -12,10 +12,9 @@ const Layout = ({ className, children }: LayoutProps) => {
     <div className="w-full h-full my-3 mx-auto overflow-x-hidden">
       <section className="w-full flex items-center justify-between">
         <section className="w-11/12 gap-x-2 xl:w-2/6 flex items-center xl:gap-x-10 p-2">
-          <h1 className="lg:block hidden text-primary font-bold text-2xl  capitalize">
+          {/* <h1 className="lg:block hidden text-primary font-bold text-2xl  capitalize">
             Unicon
-          </h1>
-
+          </h1> */}
           <input
             type="text"
             id="search"
