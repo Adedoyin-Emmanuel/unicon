@@ -70,20 +70,3 @@ label {
   transition: 0.7s;
   animation: fadeOut 0.7s linear;
 }
-
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #ddd8d9;
-  border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}

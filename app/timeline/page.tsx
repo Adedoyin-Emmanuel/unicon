@@ -37,7 +37,7 @@ const Timeline = () => {
 
                 <section className="event-body relative p-2">
                   <section className="heading flex justify-between">
-                    <h2 className="font-bold capitalize text-[20px] my-2">
+                    <h2 className="font-bold capitalize text-[18px] my-2">
                       Valentine
                     </h2>
 
@@ -192,7 +192,7 @@ const Timeline = () => {
 
                 <section className="event-body relative p-2">
                   <section className="heading flex justify-between">
-                    <h2 className="font-bold capitalize text-[20px] my-2">
+                    <h2 className="font-bold capitalize text-[18px] my-2">
                       GenZ Meetup
                     </h2>
 
