@@ -35,13 +35,16 @@ const Timeline = () => {
                   />
                 </section>
 
-                <section className="event-body p-2">
-                  <section className="heading">
+                <section className="event-body relative p-2">
+                  <section className="heading flex justify-between">
                     <h2 className="font-bold capitalize text-[20px] my-2">
-                      technovation
+                      Valentine
                     </h2>
 
-                    <section className="date"></section>
+                    <section className="p-1 m-2 w-16 absolute right-0 date bg-primary text-white rounded flex flex-col gap-y-2 items-center ">
+                      <h3 className="font-bold text-[18px]">FEB</h3>
+                      <h1 className="font-bold text-2xl">14</h1>
+                    </section>
                   </section>
 
                   <section className="event-details">
@@ -187,13 +190,16 @@ const Timeline = () => {
                   />
                 </section>
 
-                <section className="event-body p-2">
-                  <section className="heading">
+                <section className="event-body relative p-2">
+                  <section className="heading flex justify-between">
                     <h2 className="font-bold capitalize text-[20px] my-2">
                       GenZ Meetup
                     </h2>
 
-                    <section className="date"></section>
+                    <section className="p-1 m-2 w-16 absolute right-0 date bg-primary text-white rounded flex flex-col gap-y-2 items-center ">
+                      <h3 className="font-bold text-[18px]">JAN</h3>
+                      <h1 className="font-bold text-2xl">28</h1>
+                    </section>
                   </section>
 
                   <section className="event-details">
@@ -333,7 +339,7 @@ const Timeline = () => {
       <Link href="/events/create" title="Create a new event">
         <section className="fixed bottom-14 right-8">
           <section
-            className={`w-12 h-12 flex items-center justify-center  bg-secondary rounded-full shadow cursor-pointer relative transform-gpu transition-transform duration-200 scale-100 hover:scale-110 `}
+            className={`w-12 h-12 flex items-center justify-center  bg-primary rounded-full shadow cursor-pointer relative transform-gpu transition-transform duration-200 scale-100 hover:scale-110 `}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
