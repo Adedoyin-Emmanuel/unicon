@@ -15,7 +15,7 @@ const Layout = ({ className, children }: LayoutProps) => {
           <img
             src="/assets/logo.svg"
             alt="Unicon logo"
-            className="w-11 h-11 transform -translate-y-1"
+            className="w-10 h-10 transform -translate-y-1"
           />
           <input
             type="text"
