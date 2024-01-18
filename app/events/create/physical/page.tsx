@@ -11,7 +11,7 @@ const PhysicalEvent = () => {
   const pathname = usePathname();
 
   return (
-    <Layout>
+    <Layout showInput={false}>
       <section className="w-full mx-auto">
         <form className="xl:w-2/4 mx-auto">
           <section className="my-8">

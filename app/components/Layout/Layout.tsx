@@ -5,9 +5,10 @@ import AppHeader from "./../AppHeader/AppHeader";
 interface LayoutProps {
   className?: string;
   children: React.ReactNode;
+  showInput?: boolean;
 }
 
-const Layout = ({ className, children }: LayoutProps) => {
+const Layout = ({ className, children, showInput = true }: LayoutProps) => {
   return (
     <div className="w-full h-full container mx-auto">
       <section className="mx-auto w-full flex my-1 items-center justify-between md:p-3 p-0">
@@ -15,14 +16,16 @@ const Layout = ({ className, children }: LayoutProps) => {
           <img
             src="/assets/logo.svg"
             alt="Unicon logo"
-            className="w-10 h-10 transform -translate-y-1"
+            className="w-10 h-10 transform -translate-y-1 cursor-pointer"
           />
-          <input
-            type="text"
-            id="search"
-            placeholder="Search for events"
-            className="w-full p-2 border rounded-md transition-all duration-300 outline-none focus:outline-none border-slate-300 focus:border-slate-400 hover:border-slate-400"
-          />
+          {showInput && (
+            <input
+              type="text"
+              id="search"
+              placeholder="Search for events"
+              className="w-full p-2 border rounded-md transition-all duration-300 outline-none focus:outline-none border-slate-300 focus:border-slate-400 hover:border-slate-400"
+            />
+          )}
         </section>
 
         <AppHeader />
