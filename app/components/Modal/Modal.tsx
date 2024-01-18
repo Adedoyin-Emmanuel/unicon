@@ -1,19 +1,60 @@
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useState,
+  useRef,
+} from "react";
 
-"use client"
-import React from "react";
-
-interface IndexProps {
-    
+interface ModalProps {
+  className?: string;
+  children: React.ReactNode;
 }
 
-const Index = ()=> {
+export interface ModalRef {
+  showModal: () => void;
+  closeModal: () => void;
+}
+
+const Modal = forwardRef<ModalRef, ModalProps>(
+  ({ className, children }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const showModal = () => {
+      setIsOpen(true);
+    };
+
+    const closeModal = () => {
+      setIsOpen(false);
+    };
+
+    useImperativeHandle(ref, () => ({
+      showModal,
+      closeModal,
+    }));
 
     return (
-        <div>
-            <h1>Index works!</h1>
-        </div>
-    );  
-}
+      <dialog
+        id={`modal_${ref}`}
+        className={`modal ${className}`}
+        open={isOpen}
+      >
+        <div className="modal-box">
+          <form method="dialog" className="modal-backdrop">
+            <button
+              onClick={closeModal}
+              className="btn btn-sm btn-circle shadow-none border-none outline-none bg-gray-100 hover:bg-red-400 hover-text-white duration-100 transition-colors ease-linear absolute right-2 top-2"
+            >
+              ✕
+            </button>
+          </form>
 
-export default Index;
-    
+          {children}
+        </div>
+      </dialog>
+    );
+  }
+);
+
+Modal.displayName = "Modal";
+
+export default Modal;
