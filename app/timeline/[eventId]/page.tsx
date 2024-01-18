@@ -17,7 +17,7 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
             <Text className="font-bold">women in tech technovation</Text>
           </section>
 
-          <Link href={`/timeline/${params.eventId}/register`}>
+          <Link href={`/timeline/${params.eventId}/checkout`}>
             <Button>register</Button>
           </Link>
         </section>
