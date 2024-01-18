@@ -40,7 +40,7 @@ const PhysicalEvent = () => {
             <br />
 
             <section className="w-full">
-              <label className="block my-2">Product Image:</label>
+              <label className="block my-2 capitalize">Product Image:</label>
               <section className="w-full flex items-center justify-center my-1 border-[1px] border-gray-300 focus:border-primary focus:outline-none rounded h-14 p-2">
                 <section className="w-56 flex items-center">
                   <label className="capitalize w-full cursor-pointer text-accent flex items-center justify-center font-bold">
@@ -76,7 +76,7 @@ const PhysicalEvent = () => {
             </section>
           </section>
           <section className="my-5">
-            <label className="block">Event Description:</label>
+            <label className="block my-2 capitalize">Event Description:</label>
             <textarea
               className="textarea border-[1px] border-gray-300 focus:outline-none rounded-md w-full textarea-md"
               name="description"
@@ -87,14 +87,17 @@ const PhysicalEvent = () => {
 
           <section className="form-group my-5 md:flex w-full  items-center gap-x-2 justify-between">
             <section className="w-full">
-              <label htmlFor="startDate" className="text-md block my-2">
+              <label
+                htmlFor="startDate"
+                className="text-md block my-2 capitalize"
+              >
                 Start date and time
               </label>
               <Input type="datetime-local" name="startDate" required />
             </section>
             <br />
             <section className="w-full">
-              <label htmlFor="email" className="text-md block my-2">
+              <label htmlFor="email" className="text-md block my-2 capitalize">
                 End date and time
               </label>
               <Input type="datetime-local" name="endDate" required />
@@ -102,7 +105,7 @@ const PhysicalEvent = () => {
           </section>
 
           <section className="my-5">
-            <label className="block my-1">Product Tags:</label>
+            <label className="block my-2 capitalize">Product Tags:</label>
             <Input
               type="text"
               placeholder="Enter your event tags, seperate by commmas"
@@ -111,7 +114,7 @@ const PhysicalEvent = () => {
           </section>
 
           <section className="my-5">
-            <label className="block capitalize">Event Location:</label>
+            <label className="block my-2 capitalize">Event Location:</label>
             <textarea
               className="textarea border-[1px] border-gray-300 focus:outline-none rounded-md w-full textarea-md"
               name="description"
@@ -122,7 +125,10 @@ const PhysicalEvent = () => {
 
           <section className="form-group my-5 md:flex w-full  items-center gap-x-2 justify-between">
             <section className="w-full">
-              <label htmlFor="ticketPrice" className="text-md block my-2">
+              <label
+                htmlFor="ticketPrice"
+                className="text-md block my-2 capitalize"
+              >
                 Ticket Price
               </label>
               <Input
@@ -152,7 +158,7 @@ const PhysicalEvent = () => {
           </section>
 
           <section className="my-5">
-            <label className="block capitalize">
+            <label className="block capitalize my-2">
               Registration closing date:
             </label>
             <Input type="date" name="endDate" required />
