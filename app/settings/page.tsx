@@ -23,11 +23,11 @@ const Settings = () => {
   };
 
   const handleNavigateToProfile = () => {
-    router.push("/user/profile/me");
+    router.push("/settings/profile/");
   };
 
   const handleUpdateProfile = () => {
-    router.push("/user/profile");
+    router.push("/settings/profile/edit");
   };
 
   const handleVerificationModalClick = () => {
@@ -59,7 +59,7 @@ const Settings = () => {
                   />
                 </div>
                 <section className="pen-container bg-accent flex items-center justify-center rounded-full w-6 h-6 transform-gpu text-white translate-y-12 -translate-x-7 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200">
-                  <Link href={"/user/profile"}>
+                  <Link href={"/settings/profile"}>
                     {" "}
                     <BsPenFill />
                   </Link>
@@ -118,7 +118,7 @@ const Settings = () => {
                 />
               </svg>
 
-              <Link href="/user/profile" className="details">
+              <Link href="/settings/profile/edit" className="details">
                 <h3 className="account font-bold capitalize text-[16px]">
                   account{" "}
                 </h3>
