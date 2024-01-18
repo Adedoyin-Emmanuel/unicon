@@ -19,9 +19,11 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
 
           <section className="buttons flex gap-x-3">
             <Button className="w-20">delete</Button>
-            <Button border className="w-20">
-              edit
-            </Button>
+            <Link href={`/events/123/edit`}>
+              <Button border className="w-20">
+                edit
+              </Button>
+            </Link>
           </section>
         </section>
         <section className="my-2">
