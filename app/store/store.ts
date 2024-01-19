@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { apiSlice } from "./features/api/api.slice";
 import authReducer from "./features/auth/auth.slice";
-//import appReducer from "./features/app/app.slice";
+import appReducer from "./features/app/app.slice";
 
 //import other reducerers
 
@@ -11,7 +11,7 @@ const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authReducer,
-    // app: appReducer,
+    app: appReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

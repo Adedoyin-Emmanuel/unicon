@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import { ReduxProvider } from "./store/providers/provider";
 
 export const metadata: Metadata = {
   title: "Unicon",
@@ -14,7 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Toaster />
+        <ReduxProvider>{children}</ReduxProvider>
+      </body>
     </html>
   );
 }
