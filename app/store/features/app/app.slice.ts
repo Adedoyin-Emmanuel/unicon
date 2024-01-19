@@ -167,3 +167,24 @@ export const appApiCall = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
+
+  useCreateUserMutation,
+  useUpdateUserMutation,
+
+  useCreateEventMutation,
+  useRegisterEventMutation,
+
+  useGetAllEventsQuery,
+  useGetEventByIdQuery,
+  useDeleteEventMutation,
+  useGetEventsByFilterQuery,
+} = appApiCall;
+
+export const { saveDashboardInfo, resetApp } = appSlice.actions;
+export default appSlice.reducer;
