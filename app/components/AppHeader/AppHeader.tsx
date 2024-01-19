@@ -1,6 +1,11 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { AppDispatch, useAppSelector } from "@/app/store/store";
+import { logoutUser } from "@/app/store/features/auth/auth.slice";
+import { useLogoutMutation } from "@/app/store/features/app/app.slice";
+import { resetApp } from "@/app/store/features/app/app.slice";
 
 interface AppHeaderProps {
   className?: string;
@@ -11,6 +16,10 @@ const AppHeader = ({ className, ...others }: AppHeaderProps) => {
     useState(false);
   const profileRef: any = useRef(null);
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const [logout] = useLogoutMutation();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+
   useEffect(() => {
     const closeDropdowns = (event: MouseEvent) => {
       if (
@@ -74,7 +83,10 @@ const AppHeader = ({ className, ...others }: AppHeaderProps) => {
       <div className="avatar p-2 cursor-pointer" ref={profileRef}>
         <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
           <img
-            src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
+            src={
+              userAuthInfo?.profilePicture ||
+              "https://api.dicebear.com/7.x/micah/svg?seed=dina"
+            }
             alt="User profile image"
           />
         </div>

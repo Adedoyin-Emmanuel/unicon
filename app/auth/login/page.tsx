@@ -41,9 +41,17 @@ const Login = () => {
         const jwtToken = response.data.accessToken;
         const jwtPayload: any = jwt.decode(jwtToken);
         const tempData = jwtPayload;
-        const { accessToken, refreshToken: token, ...data } = response.data;
-        console.log(data);
-        dispatch(loginUser(data));
+        const {
+          accessToken,
+          refreshToken: token,
+          password,
+          ...data
+        } = response.data;
+        console.log(response.data);
+
+        const { password: passwordToRemove, ...others } = data.user;
+        console.log(others);
+        dispatch(loginUser(others));
         try {
           const serverResponse = await axios.post("/api/auth/set-token", {
             token,
