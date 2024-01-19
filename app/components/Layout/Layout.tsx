@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import AppHeader from "./../AppHeader/AppHeader";
+import BackButton from "@/app/components/BackButton/BackButton";
 
 interface LayoutProps {
   className?: string;
@@ -39,7 +40,10 @@ const Layout = ({
         <AppHeader />
       </section>
 
-      <section className="w-full p-2 overflow-x-hidden">{children}</section>
+      <section className="w-full p-2 overflow-x-hidden">
+        {/* <BackButton /> */}
+        {children}
+      </section>
     </div>
   );
 };
