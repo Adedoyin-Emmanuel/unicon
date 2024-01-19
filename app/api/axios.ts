@@ -3,7 +3,8 @@
 import axios from "axios";
 
 export const apiBaseUrl =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://agronomix-api.onrender.com/api";
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  "https://unicorn-22up.onrender.com/api/v1";
 
 const Axios = axios.create({
   baseURL: apiBaseUrl,

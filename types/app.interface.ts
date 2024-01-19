@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   name: string;
   username: string;
   email: string;
@@ -12,7 +12,7 @@ interface User {
   following: string[];
 }
 
-interface Event {
+export interface Event {
   name: string;
   image: string;
   eventType: "virtual" | "physical";
