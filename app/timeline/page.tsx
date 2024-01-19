@@ -14,7 +14,7 @@ const Timeline = () => {
     <Layout>
       <section className="w-full">
         <section className="upcoming-events my-8 md:p-1">
-          <h3 className="font-bold text-2xl capitalize my-2 md:text-center">
+          <h3 className="font-bold text-2xl capitalize my-2 md:px-11">
             upcoming events
           </h3>
           {/* 
@@ -30,7 +30,7 @@ const Timeline = () => {
               totalEvents !== 0 && "flex flex-col md:grid md:place-items-center"
             } sm:grid-cols-2 xl:grid-cols-3 my-8`}
           >
-            <Link href={"#"}>
+            <Link href={"/timeline/123"}>
               <section
                 className={`grid grid-rows-2 md:w-96 my-2  h-80 rounded-md cursor-pointer  ease-in border-[1px] border-slate-300`}
               >
