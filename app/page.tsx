@@ -76,21 +76,7 @@ export default function Home() {
             />
           </div>
         </section>
-        <ScrollCarousel
-          autoplay
-          autoplaySpeed={8}
-          speed={7}
-          onReady={() => console.log("I love C#")}
-          className="carousel carousel-start my-5 bg-primary p-2"
-        >
-          {Texts.map((item) => (
-            <div key={item} className="carousel-item w-full h-full p-0 m-0">
-              <h1 className="font-bold text-2xl uppercase text-white">
-                {item}
-              </h1>
-            </div>
-          ))}
-        </ScrollCarousel>
+        
       </section>
     </section>
   );
