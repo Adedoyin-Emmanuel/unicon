@@ -1,20 +1,61 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
 import Text from "../../components/Text/Text";
 import Link from "next/link";
 import BackButton from "../../components/BackButton/BackButton";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/app/store/store";
+import { saveSingleEventInfo } from "@/app/store/features/app/app.slice";
+import { useGetEventByIdQuery } from "@/app/store/features/app/app.slice";
+import moment from "moment";
 
 const EventId = ({ params }: { params: { eventId: string } }) => {
+  const dispatch = useDispatch();
+  const { singleEventInfo } = useAppSelector((state) => state.app);
+  const { data, isLoading, refetch, isSuccess } = useGetEventByIdQuery(
+    params.eventId
+  );
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      const refetchData = async () => {
+        const response = await refetch();
+        return response;
+      };
+      refetchData().then((data) => {});
+      dispatch(saveSingleEventInfo(data?.data));
+      console.log(data);
+    }
+  }, [data]);
+
+  const startDateCustom: moment.Moment = moment(singleEventInfo?.startDate);
+  const currentDate: moment.Moment = moment();
+  const duration: moment.Duration = moment.duration(
+    currentDate.diff(startDateCustom)
+  );
+  const weeks: number = Math.round(duration.asWeeks());
+  const days: number = Math.round(duration.asDays());
+
+  const startDate: moment.Moment = moment(singleEventInfo?.startDate);
+  const endDate: moment.Moment = moment(singleEventInfo?.endDate);
+
+  const formattedStartDate: string = startDate.format("Do");
+  const formattedEndDate: string = endDate.format("Do MMMM, YYYY");
+
+  const formattedDateRange: string = `${formattedStartDate} - ${formattedEndDate}`;
+
+  console.log("Formatted Date Range:", formattedDateRange);
+
   return (
     <Layout>
       <section className="w-full container">
         <section className="w-full flex items-center justify-between  my-8 md:p-1">
           <section className="flex items-center md:gap-x-10 gap-x-3">
             <BackButton />
-            <Text className="font-bold">women in tech technovation</Text>
+            <Text className="font-bold">{singleEventInfo?.name}</Text>
           </section>
 
           <Link href={`/timeline/${params.eventId}/checkout`}>
@@ -23,7 +64,7 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
         </section>
         <section className="my-2">
           <img
-            src="/assets/whitesur.jpg"
+            src={singleEventInfo?.image}
             alt="Hero Event Image"
             className="object-cover w-full h-96 rounded"
           />
@@ -33,24 +74,13 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
             <h2 className="capitalize font-bold md:text-2xl text-[20px]">
               event description
             </h2>
-            <p className="py-3 ">
-              Dive into the world of cutting-edge technology at the Tech
-              Innovators Summit. This immersive event is designed for tech
-              enthusiasts, entrepreneurs, and innovators alike. Join us for a
-              day filled with inspiring keynote speakers, hands-on workshops,
-              and networking opportunities with industry leaders. Discover the
-              latest trends in artificial intelligence, blockchain,
-              cybersecurity, and more. Whether you're a tech veteran or just
-              starting your journey, the Tech Innovators Summit is the ultimate
-              destination to explore, learn, and connect in the dynamic tech
-              landscape.
-            </p>
+            <p className="py-3 ">{singleEventInfo?.description}</p>
           </section>
 
           <section className="w-full second flex flex-col ">
             <section className="flex items-center justify-between p-1">
-              <Text className="font-bold">08th-10th of october, 2023 </Text>
-              <Text className="font-bold">₦ 2,000</Text>
+              <Text className="font-bold">{formattedDateRange}</Text>
+              <Text className="font-bold">₦{singleEventInfo?.ticketPrice}</Text>
             </section>
 
             <section className="location flex items-center gap-x-2 my-1">
@@ -74,7 +104,15 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
                 />
               </svg>
 
-              <Text>28, moonlight avenue</Text>
+              <Text noCapitalize>
+                {singleEventInfo?.eventType == "physical" ? (
+                  singleEventInfo?.location
+                ) : (
+                  <Link href={`${singleEventInfo?.location}`}>
+                    {singleEventInfo?.location.toString()}
+                  </Link>
+                )}
+              </Text>
             </section>
 
             <section className="time flex items-center gap-x-2 my-1">
@@ -118,7 +156,9 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
                 />
               </svg>
 
-              <Text>8:45am - 5:00pm</Text>
+              <Text>
+                {singleEventInfo?.startTime} - {singleEventInfo?.endTime}
+              </Text>
             </section>
             <section className="time flex items-center gap-x-2 my-1">
               <svg
@@ -169,7 +209,9 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
                 />
               </svg>
 
-              <Text className="font-bold">in 2 weeks</Text>
+              <Text className="font-bold">
+                in {days} {days > 1 ? "Days" : "Day"}
+              </Text>
             </section>
           </section>
         </section>
@@ -178,29 +220,14 @@ const EventId = ({ params }: { params: { eventId: string } }) => {
         <section className="">
           <h2 className="capitalize font-bold text-[20px]">event tags</h2>
           <section className="tags w-full flex gap-3 my-1 flex-wrap">
-            <section className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer">
-              technology
-            </section>
-            <section className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer">
-              ai
-            </section>
-            <section className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer">
-              workshop
-            </section>
-            <section className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer">
-              networking
-            </section>
-
-            <section className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer">
-              innovation
-            </section>
-
-            <section className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer">
-              about me
-            </section>
-            <section className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer">
-              collaboration
-            </section>
+            {singleEventInfo?.tags?.map((tag, index) => (
+              <section
+                key={index}
+                className="border-[1px] border-slate-300 rounded p-2 capitalize cursor-pointer"
+              >
+                {tag}
+              </section>
+            ))}
           </section>
         </section>
       </section>

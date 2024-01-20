@@ -17,6 +17,11 @@ const initialState = {
     typeof window !== "undefined"
       ? (loadFromLocalStorage("uniconTimelineInfo", null) as Event[] | null)
       : null,
+
+  singleEventInfo:
+    typeof window !== "undefined"
+      ? (loadFromLocalStorage("uniconSingleEventInfo", null) as Event | null)
+      : null,
 };
 
 const appSlice = createSlice({
@@ -38,6 +43,14 @@ const appSlice = createSlice({
       saveToLocalStorage("uniconTimelineInfo", JSON.stringify(action.payload));
     },
 
+    saveSingleEventInfo: (state, action) => {
+      state.singleEventInfo = action.payload;
+      saveToLocalStorage(
+        "uniconSingleEventInfo",
+        JSON.stringify(action.payload)
+      );
+    },
+
     /**
      * @see clear data reducers, basically resets the state and removes data from local storage.
      *
@@ -47,6 +60,7 @@ const appSlice = createSlice({
     resetApp: (state, action) => {
       localStorage.removeItem("uniconDashboardInfo");
       localStorage.removeItem("uniconTimelineInfo");
+      localStorage.removeItem("uniconSingleEventInfo");
     },
   },
 });
@@ -146,11 +160,8 @@ export const appApiCall = apiSlice.injectEndpoints({
 
     getEventById: builder.query({
       query: (data) => ({
-        url: `${EVENT_URL}`,
+        url: `${EVENT_URL}/${data}`,
         method: "GET",
-        params: {
-          data,
-        },
       }),
       providesTags: ["User"],
     }),
@@ -196,5 +207,10 @@ export const {
   useGetEventsByFilterQuery,
 } = appApiCall;
 
-export const { saveDashboardInfo, resetApp, saveTimeEventsInfo } = appSlice.actions;
+export const {
+  saveDashboardInfo,
+  resetApp,
+  saveTimeEventsInfo,
+  saveSingleEventInfo,
+} = appSlice.actions;
 export default appSlice.reducer;
