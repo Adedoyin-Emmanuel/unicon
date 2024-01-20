@@ -14,6 +14,7 @@ export interface User {
 }
 
 export interface Event {
+  _id: string;
   name: string;
   image: string;
   eventType: "virtual" | "physical";

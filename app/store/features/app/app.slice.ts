@@ -13,6 +13,10 @@ const initialState = {
     typeof window !== "undefined"
       ? (loadFromLocalStorage("uniconDashboardInfo", null) as User | null)
       : null,
+  timelineInfo:
+    typeof window !== "undefined"
+      ? (loadFromLocalStorage("uniconTimelineInfo", null) as Event[] | null)
+      : null,
 };
 
 const appSlice = createSlice({
@@ -29,6 +33,11 @@ const appSlice = createSlice({
       saveToLocalStorage("uniconDashboardInfo", JSON.stringify(action.payload));
     },
 
+    saveTimeEventsInfo: (state, action) => {
+      state.timelineInfo = action.payload;
+      saveToLocalStorage("uniconTimelineInfo", JSON.stringify(action.payload));
+    },
+
     /**
      * @see clear data reducers, basically resets the state and removes data from local storage.
      *
@@ -37,6 +46,7 @@ const appSlice = createSlice({
     // Resets the entire app state to the initial state, used when user logs out
     resetApp: (state, action) => {
       localStorage.removeItem("uniconDashboardInfo");
+      localStorage.removeItem("uniconTimelineInfo");
     },
   },
 });
@@ -186,5 +196,5 @@ export const {
   useGetEventsByFilterQuery,
 } = appApiCall;
 
-export const { saveDashboardInfo, resetApp } = appSlice.actions;
+export const { saveDashboardInfo, resetApp, saveTimeEventsInfo } = appSlice.actions;
 export default appSlice.reducer;

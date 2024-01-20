@@ -1,16 +1,21 @@
 import React from "react";
 import Link from "next/link";
 import Text from "./../Text/Text";
+import moment from "moment";
 
 interface EventCardProps {
   className?: string;
   imageUrl: string;
   title: string;
   location: string;
-  time: Date;
-  startDate: Date;
   price: number;
-  _id: string;
+  _id?: string;
+  startDate: Date;
+  endDate: Date;
+  startTime: string;
+  endTime: string;
+  tags?: string[];
+  creator?: string;
 }
 
 const EventCard = ({
@@ -18,30 +23,70 @@ const EventCard = ({
   imageUrl,
   title,
   location,
-  time,
+  startTime,
+  endTime,
   startDate,
+  endDate,
   price,
   _id,
   ...others
 }: EventCardProps) => {
+  const startDateCustom: moment.Moment = moment(startDate);
+  const currentDate: moment.Moment = moment();
+  const duration: moment.Duration = moment.duration(
+    currentDate.diff(startDateCustom)
+  );
+  const weeks: number = Math.round(duration.asWeeks());
+  const days: number = Math.round(duration.asDays());
+
   return (
-    <Link href={"#"} {...others} className={`${className}`}>
+    <Link href={`/timeline/${_id}/`}>
       <section
-        className={`grid grid-rows-2 md:w-96 my-2  h-80 rounded-md cursor-pointer  ease-in border-[1px] border-slate-300`}
+        className={`grid grid-rows-2 md:w-96 my-2  h-80 rounded-md cursor-pointer  ease-in border-[1px] border-slate-300 ${className}`}
+        {...others}
       >
         <section className="w-full">
           <img
             src={imageUrl}
-            alt={`An event image related to ${title}`}
+            alt={`An image related to ${title}`}
             className="w-full h-full object-cover rounded-t-md"
           />
         </section>
 
-        <section className="event-body p-2">
-          <section className="heading">
-            <h2 className="font-bold capitalize text-[20px] my-2">{title}</h2>
+        <section className="event-body relative p-2">
+          <section className="heading flex justify-between">
+            <h2 className="font-bold capitalize text-[18px] my-2">{title}</h2>
 
-            <section className="date"></section>
+            <section className="p-1 m-2 w-16 absolute right-0 rounded flex gap-x-2 items-center ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+                />
+              </svg>
+            </section>
           </section>
 
           <section className="event-details">
@@ -110,7 +155,9 @@ const EventCard = ({
                 />
               </svg>
 
-              <Text>{new Date(time).getDay()}</Text>
+              <Text>
+                {startTime} - {endTime}
+              </Text>
             </section>
           </section>
 
@@ -164,13 +211,13 @@ const EventCard = ({
                 />
               </svg>
 
-              <Text className="font-bold">{new Date(startDate).getDate()}</Text>
+              <Text className="font-bold">
+                in {days} {days > 1 ? "Days" : "Day"}
+              </Text>
             </section>
 
             <section className="price">
-              <Text className="font-bold">
-                {price == 0 ? "Free" : `₦ ${price}`}{" "}
-              </Text>
+              <Text className="font-bold">₦ {price}</Text>
             </section>
           </section>
         </section>

@@ -82,13 +82,7 @@ const AppHeader = ({ className, ...others }: AppHeaderProps) => {
     >
       <div className="avatar p-2 cursor-pointer" ref={profileRef}>
         <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-          <img
-            src={
-              userAuthInfo?.profilePicture ||
-              "https://api.dicebear.com/7.x/micah/svg?seed=dina"
-            }
-            alt="User profile image"
-          />
+          <img src={userAuthInfo?.profilePicture} alt="User profile image" />
         </div>
       </div>
 
