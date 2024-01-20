@@ -7,25 +7,68 @@ import Text from "@/app/components/Text/Text";
 import Link from "next/link";
 import Input from "@/app/components/Input/Input";
 import BackButton from "@/app/components/BackButton/BackButton";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/app/store/store";
+import { saveSingleEventInfo } from "@/app/store/features/app/app.slice";
+import { useGetEventByIdQuery } from "@/app/store/features/app/app.slice";
+import moment from "moment";
+import { useRegisterEventMutation } from "@/app/store/features/app/app.slice";
 
 const Checkout = () => {
+  const { singleEventInfo } = useAppSelector((state) => state.app);
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    customerName: "",
+    email: "",
+    amount: singleEventInfo?.ticketPrice,
+    currency: "NGN",
+    callbackUrl: "http://getunicon.vercel.app/timeline",
+  });
+
+  const [registerEvent, { isLoading }] = useRegisterEventMutation();
+
+  const handleInputChange = (e: React.FormEvent<HTMLFormElement> | any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const response = await registerEvent(formData).unwrap();
+
+    if (response) {
+      console.log(response);
+
+      router.push(response.data.checkout_url);
+    }
+  };
+
   return (
     <Layout>
-      <section className="w-full container">
+      <form
+        className="w-full container"
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <section className="w-full flex items-center justify-between  my-8 md:p-1">
           <section className="flex items-center md:gap-x-10 gap-x-3">
             <BackButton />
-            <Text className="font-bold">women in tech technovation</Text>
+            <Text className="font-bold">{singleEventInfo?.name}</Text>
           </section>
         </section>
         <section className="my-2">
           <img
-            src="/assets/whitesur.jpg"
+            src={singleEventInfo?.image}
             alt="Hero Event Image"
             className="object-cover w-full h-96 rounded"
           />
         </section>
-        <section className="contact-info my-5 grid md:grid-cols-3 md:grid-flow-col items-center gap-6">
+        <section
+          className="contact-info my-5 grid md:grid-cols-3 md:grid-flow-col items-center gap-6"
+          onSubmit={handleSubmit}
+        >
           <section className="first md:col-span-2">
             <h2 className="capitalize font-bold md:text-2xl text-[20px]">
               contact information
@@ -36,8 +79,10 @@ const Checkout = () => {
               </label>
               <Input
                 type="text"
-                name="fullname"
+                name="customerName"
                 placeholder="Enter your fullname"
+                value={formData.customerName}
+                onChange={handleInputChange}
               />
             </section>
 
@@ -48,6 +93,8 @@ const Checkout = () => {
               <Input
                 type="email"
                 name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 placeholder="Enter your email address"
               />
             </section>
@@ -58,44 +105,24 @@ const Checkout = () => {
             <div className="flex items-center justify-between my-4">
               <div>
                 <p>Tickets</p>
-                <div className="flex items-center gap-x-2 my-1">
-                  <Button
-                    border
-                    className="text-black mr-2 w-10 h-10 text-2xl flex items-center justify-center"
-                  >
-                    -
-                  </Button>
-                  <span className="text-[20px]">2</span>
-                  <Button
-                    border
-                    className="text-black text-2xl ml-2 w-10 h-10 flex items-center justify-center "
-                  >
-                    +
-                  </Button>
-                </div>
               </div>
-              <p>$30.00</p>
-            </div>
-
-            <div className="flex items-center justify-between my-4">
-              <div>
-                <p>Sub-total</p>
-              </div>
-              <p>$60.00</p>
+              <p>₦{singleEventInfo?.ticketPrice}</p>
             </div>
 
             <div className="flex items-center justify-between my-4">
               <div>
                 <p className="">Total</p>
               </div>
-              <p className="font-bold text-primary">$60.00</p>
+              <p className="font-bold text-primary">
+                ₦ {singleEventInfo?.ticketPrice}
+              </p>
             </div>
 
             <Button className="w-full">place order</Button>
           </section>
         </section>
         <br />
-      </section>
+      </form>
     </Layout>
   );
 };
