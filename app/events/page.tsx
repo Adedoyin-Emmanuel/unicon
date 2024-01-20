@@ -1,11 +1,36 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Layout from "@/app/components/Layout/Layout";
 import Text from "@/app/components/Text/Text";
+import { useGetEventsByUserIdQuery } from "../store/features/app/app.slice";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../store/store";
+import { saveUserEventInfo } from "../store/features/app/app.slice";
+import EventCard from "../components/EventCard/EventCard";
+import Loader from "../components/Loader/Loader";
 
 const EventDashboard = () => {
   const pathname = usePathname();
+  const dispatch = useDispatch();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+  const { userEventInfo } = useAppSelector((state) => state.app);
+
+  const { data, isLoading, isSuccess, refetch } = useGetEventsByUserIdQuery(
+    userAuthInfo?._id
+  );
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      const refetchData = async () => {
+        const response = await refetch();
+        return response;
+      };
+      refetchData().then((data) => {});
+      dispatch(saveUserEventInfo(data?.data));
+      console.log(data);
+    }
+  }, [data]);
 
   return (
     <Layout>
@@ -20,7 +45,7 @@ const EventDashboard = () => {
 
         <section className="analytics mx-auto w-full flex md:flex-row flex-col md:items-center md:justify-between gap-x-5 my-5 md:p-0 p-1">
           <section className="w-full cursor-pointer created-events bg-primary/15 rounded-md border-[1px] border-primary p-3 flex flex-col items-center justify-center md:w-72 h-24 my-3">
-            <h1 className="text-4xl font-extrabold">0</h1>
+            <h1 className="text-4xl font-extrabold">{userEventInfo?.length}</h1>
             <h2 className="font-medium text-[15px] capitalize py-1">
               created events
             </h2>
@@ -70,8 +95,29 @@ const EventDashboard = () => {
               role="tabpanel"
               className="tab-content bg-base-100 border-x-base-100 rounded-box p-1 py-3 w-full"
             >
-              <section className="events w-full flex flex-col  items-center justify-center my-4">
-                <Text>No events available</Text>
+              <section className="w-full flex md:flex-row flex-col md:items-center gap-x-10 my-4">
+                {isLoading ? (
+                  <Loader />
+                ) : userEventInfo?.length == 0 ? (
+                  <Text>No events found</Text>
+                ) : (
+                  userEventInfo?.map((event) => {
+                    return (
+                      <EventCard
+                        key={event._id}
+                        title={event.name}
+                        price={event.ticketPrice}
+                        location={event.location}
+                        startTime={event.startTime}
+                        endTime={event.endTime}
+                        imageUrl={event.image}
+                        startDate={event.startDate}
+                        endDate={event.endDate}
+                        _id={event._id}
+                      />
+                    );
+                  })
+                )}
               </section>
             </div>
 

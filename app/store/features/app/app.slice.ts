@@ -22,6 +22,11 @@ const initialState = {
     typeof window !== "undefined"
       ? (loadFromLocalStorage("uniconSingleEventInfo", null) as Event | null)
       : null,
+
+  userEventInfo:
+    typeof window !== "undefined"
+      ? (loadFromLocalStorage("uniconUserEventInfo", null) as Event[] | null)
+      : null,
 };
 
 const appSlice = createSlice({
@@ -51,6 +56,11 @@ const appSlice = createSlice({
       );
     },
 
+    saveUserEventInfo: (state, action) => {
+      state.userEventInfo = action.payload;
+      saveToLocalStorage("uniconUserEventInfo", JSON.stringify(action.payload));
+    },
+
     /**
      * @see clear data reducers, basically resets the state and removes data from local storage.
      *
@@ -61,6 +71,7 @@ const appSlice = createSlice({
       localStorage.removeItem("uniconDashboardInfo");
       localStorage.removeItem("uniconTimelineInfo");
       localStorage.removeItem("uniconSingleEventInfo");
+      localStorage.removeItem("uniconUserEventInfo");
     },
   },
 });
@@ -158,6 +169,14 @@ export const appApiCall = apiSlice.injectEndpoints({
       providesTags: ["User"],
     }),
 
+    getEventsByUserId: builder.query({
+      query: (data) => ({
+        url: `${EVENT_URL}/user/${data}`,
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+
     getEventById: builder.query({
       query: (data) => ({
         url: `${EVENT_URL}/${data}`,
@@ -205,6 +224,7 @@ export const {
   useGetEventByIdQuery,
   useDeleteEventMutation,
   useGetEventsByFilterQuery,
+  useGetEventsByUserIdQuery,
 } = appApiCall;
 
 export const {
@@ -212,5 +232,6 @@ export const {
   resetApp,
   saveTimeEventsInfo,
   saveSingleEventInfo,
+  saveUserEventInfo,
 } = appSlice.actions;
 export default appSlice.reducer;
