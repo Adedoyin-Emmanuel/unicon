@@ -36,8 +36,8 @@ const EventCard = ({
   const duration: moment.Duration = moment.duration(
     currentDate.diff(startDateCustom)
   );
-  const weeks: number = Math.round(duration.asWeeks());
-  const days: number = Math.round(duration.asDays());
+  const weeks: number = Math.abs(Math.round(duration.asWeeks()));
+  const days: number = Math.abs(Math.round(duration.asDays()));
 
   return (
     <Link href={`/timeline/${_id}/`}>
