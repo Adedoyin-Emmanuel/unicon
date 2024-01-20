@@ -53,6 +53,7 @@ const Timeline = () => {
               timelineInfo?.map((event) => {
                 return (
                   <EventCard
+                    key={event._id}
                     title={event.name}
                     price={event.ticketPrice}
                     location={event.location}
