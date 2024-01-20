@@ -34,7 +34,11 @@ const Navbar = () => {
             href={"/"}
             className="block text-primary font-bold md:text-3xl text-2xl capitalize"
           >
-            <img src="/assets/logo.svg" alt="Unicon logo" className="transform -translate-y-1 md:w-12 md:h-12 w-10 h-10" />
+            <img
+              src="/assets/logo.svg"
+              alt="Unicon logo"
+              className="transform -translate-y-1 md:w-12 md:h-12 w-10 h-10"
+            />
           </Link>
           <section className="md:flex hidden gap-x-5">
             <ul className="flex flex-row">
@@ -50,7 +54,7 @@ const Navbar = () => {
               </li>
               <li className="mx-2">
                 <Link
-                  href="/trending-events"
+                  href="#"
                   className={`capitalize ${
                     currentPath.includes("trending-events") && currentPathClass
                   } ${hoverClass}`}
@@ -60,7 +64,7 @@ const Navbar = () => {
               </li>
               <li className="mx-2">
                 <Link
-                  href="/join-event"
+                  href="#"
                   className={`capitalize ${
                     currentPath.includes("/join-event") && currentPathClass
                   } ${hoverClass}`}
@@ -142,7 +146,7 @@ const Navbar = () => {
           </li>
           <li className="mx-2">
             <Link
-              href="/trending-events"
+              href="#"
               className={`capitalize ${
                 currentPath.includes("trending-events") && currentPathClass
               } ${hoverClass}`}
@@ -152,7 +156,7 @@ const Navbar = () => {
           </li>
           <li className="mx-2">
             <Link
-              href="/join-event"
+              href="#"
               className={`capitalize ${
                 currentPath.includes("/join-event") && currentPathClass
               } ${hoverClass}`}
