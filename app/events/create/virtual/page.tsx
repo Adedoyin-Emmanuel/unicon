@@ -117,7 +117,7 @@ const VirtualEvent = () => {
 
         if (uniconResponse) {
           toast.success(uniconResponse.message);
-          router.push("/events");
+          router.push("/timeline");
         }
       }
     } catch (error: any) {

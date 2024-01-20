@@ -80,7 +80,7 @@ const PhysicalEvent = () => {
       endDate,
       endTime,
       tags: tagsArray,
-      creator: userAuthInfo?._id
+      creator: userAuthInfo?._id,
     };
 
     console.log(newFormData);
@@ -118,7 +118,7 @@ const PhysicalEvent = () => {
 
         if (uniconResponse) {
           toast.success(uniconResponse.message);
-          router.push("/events");
+          router.push("/timeline");
         }
       }
     } catch (error: any) {
