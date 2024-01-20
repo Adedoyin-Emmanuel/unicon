@@ -47,6 +47,8 @@ const Timeline = () => {
           >
             {isLoading ? (
               <Loader />
+            ) : timelineInfo?.length == 0 ? (
+              <Text>No events found</Text>
             ) : (
               timelineInfo?.map((event) => {
                 return (
